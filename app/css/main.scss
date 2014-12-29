@@ -52,9 +52,10 @@ $orange: #eb7f00;
 }
 
 //ELEMENTS
-body {
+html, body {
+  height: 100%;
   margin: 0;
-  padding: 20px;
+  padding: 0;
 }
 
 //IDS
@@ -64,8 +65,33 @@ body {
 
 #mainContent {
 
+  width: 100%;
+  height: auto;
+
+  #map-canvas {
+    height: 70%;
+    margin: 0;
+    padding: 0;
+  }
+
+  #entryList {
+    background-color: #cecece;
+    height: 30%;
+  }
 }
 
 #mainFooter {
 
 }
+
+.clearfix:before,
+.clearfix:after {
+  content: '\0020';
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
