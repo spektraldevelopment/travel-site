@@ -2,11 +2,11 @@
     "use strict";
 
     var Map = {}, ready = false, map, readyChecker;
-
+    //
     Map.init = function(){
         var mapOptions = {
-            center: { lat: 22.275849, lng: 114.172377 },
-            zoom: 12
+            center: { lat: 13.840658, lng: 104.741345 },
+            zoom: 6
         };
         map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         ready = true;
@@ -28,17 +28,39 @@
 
     Map.setData = function(arr) {
         arr.forEach(function(entry){
-//            console.log('title: ' + entry.title);
-//            console.log('description: ' + entry.description);
-//            console.log('link' + entry.link);
+            
+            var
+                entryObj = {},
+                latLong, desc = entry.description;
 
-            var latLong, desc = entry.description;
+            latLong = JSON.parse(desc.substring(desc.indexOf("{"), desc.length))
 
-            latLong = desc.substring(1, desc.length - 1);
+            entryObj['title'] = entry.title;
+            entryObj['description'] = desc.substring(0, desc.indexOf('{'));
+            entryObj['lat'] = latLong.lat;
+            entryObj['long'] = latLong.long;
+            entryObj['url'] = entry.link;
 
-            console.log('latLong: ' + latLong);
+            createMarker(entryObj);
+            //console.log('Entry Object: ' + JSON.stringify(entryObj));
         });
     };
+
+    function createMarker(obj){
+        var latLng = new google.maps.LatLng(obj.lat, obj.long);
+
+        var marker = new google.maps.Marker({
+            position: latLng,
+            map: map,
+            title: obj.title,
+            icon: {
+                path: google.maps.SymbolPath.CIRCLE,
+                scale: 5
+            }
+        });
+
+        marker.setMap(map);
+    }
 
     window.Map = Map;
 }(window));

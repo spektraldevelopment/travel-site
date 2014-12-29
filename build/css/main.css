@@ -9,13 +9,9 @@ html, body {
   height: auto;
 }
 #mainContent #map-canvas {
-  height: 70%;
+  height: 100%;
   margin: 0;
   padding: 0;
-}
-#mainContent #entryList {
-  background-color: #cecece;
-  height: 30%;
 }
 
 .clearfix:before,
