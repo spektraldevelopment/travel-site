@@ -27,39 +27,102 @@
     };
 
     Map.setData = function(arr) {
-        arr.forEach(function(entry){
-            
-            var
-                entryObj = {},
-                latLong, desc = entry.description;
+        var pathArr = [];
+        arr.forEach(function(entry, index){
 
-            latLong = JSON.parse(desc.substring(desc.indexOf("{"), desc.length))
+            var
+                entryObj = {}, latLng,
+                coordinates, desc = entry.description;
+
+            coordinates = JSON.parse(desc.substring(desc.indexOf("{"), desc.length))
 
             entryObj['title'] = entry.title;
             entryObj['description'] = desc.substring(0, desc.indexOf('{'));
-            entryObj['lat'] = latLong.lat;
-            entryObj['long'] = latLong.long;
+            entryObj['lat'] = coordinates.lat;
+            entryObj['long'] = coordinates.long;
             entryObj['url'] = entry.link;
 
+            if (index === (arr.length - 1)) {
+                entryObj['mostRecent'] = true;
+            } else {
+                entryObj['mostRecent'] = false;
+            }
+
+            latLng = new google.maps.LatLng(coordinates.lat, coordinates.long);
+            pathArr.push(latLng);
+
             createMarker(entryObj);
-            //console.log('Entry Object: ' + JSON.stringify(entryObj));
         });
+
+        createPath(pathArr);
     };
 
     function createMarker(obj){
-        var latLng = new google.maps.LatLng(obj.lat, obj.long);
+        var
+            marker, latLng = new google.maps.LatLng(obj.lat, obj.long),
+            goldStar, markerColour = '#000';
 
-        var marker = new google.maps.Marker({
-            position: latLng,
-            map: map,
-            title: obj.title,
-            icon: {
-                path: google.maps.SymbolPath.CIRCLE,
-                scale: 5
-            }
-        });
+        goldStar = {
+            //path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+            path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+            fillColor: '#eaea46',
+            fillOpacity: 1,
+            scale: 0.2,
+            strokeColor: '#ffc100',
+            strokeWeight: 1,
+            anchor: new google.maps.Point(100,150)
+        };
+
+        if (obj.mostRecent === true) {
+            marker = new google.maps.Marker({
+                position: latLng,
+                map: map,
+                title: obj.title,
+                animation: google.maps.Animation.DROP,
+                icon: goldStar
+            });
+        } else {
+            marker = new google.maps.Marker({
+                position: latLng,
+                map: map,
+                title: obj.title,
+                animation: google.maps.Animation.DROP,
+                icon: {
+                    path: google.maps.SymbolPath.CIRCLE,
+                    scale: 5,
+                    strokeColor:  markerColour
+                }
+            });
+        }
 
         marker.setMap(map);
+
+        if (obj.mostRecent === true) {
+            map.setZoom(10);
+            map.panTo(latLng);
+        }
+    }
+
+    function createPath(arr){
+        var lineSymbol = {
+            path: 'M 0,-1 0,1',
+            strokeOpacity: 0.5,
+            scale: 4
+        };
+
+        var path = new google.maps.Polyline({
+            path: arr,
+            geodesic: true,
+            strokeOpacity: 0,
+            icons: [{
+                icon: lineSymbol,
+                offset: '0',
+                repeat: '20px'
+            }],
+            map: map
+        });
+
+        path.setMap(map);
     }
 
     window.Map = Map;
