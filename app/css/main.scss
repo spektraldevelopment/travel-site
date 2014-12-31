@@ -10,6 +10,12 @@ $light-blue: #acf0f2;
 $white: #fff;
 $orange: #eb7f00;
 
+//Map Colours
+//$marker: #bf863f;
+//$travelPath: #732020;
+//$starOutline: #a3793d;
+//$starFill: #f2811d;
+
 //MIXINS
 @mixin header($size: 25px)
 {
@@ -56,15 +62,16 @@ html, body {
   height: 100%;
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 //IDS
 #mainHeader {
-
+  z-index: 20;
 }
 
 #mainContent {
-
+  z-index: 10;
   width: 100%;
   height: auto;
 
@@ -82,6 +89,32 @@ html, body {
 
 #mainFooter {
 
+}
+
+//Classes
+
+.overlay {
+  z-index: 100;
+  position: relative;
+  display: block;
+  top: 50%;
+  padding: 0;
+  margin: 0 auto;
+  background-color: #666;
+  width: 300px;
+  height: 300px;
+}
+
+//.imageContainer {
+//  display: block;
+//}
+
+.thumbnail {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 171px;
+  height: 128px;
 }
 
 .clearfix:before,
