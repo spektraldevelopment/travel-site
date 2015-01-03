@@ -29,12 +29,10 @@ module.exports = function(grunt) {
                 src: ["build"]
             },
             scripts: {
-                src: ["build/js/*.js", "!build/js/main.min.js", "!build/js/map.js", "!build/js/vendor/jquery-2.1.3.min.js", "!build/js/vendor/spektraltools.min.js", "!build/js/overlay.js"]
-                //You can add multiple ignore files
-                //"build/*.js", "!build/NodeMaker-min.js", "!build/Files.js"
+                src: ["build/js/*.js", "!build/js/main.min.js", "!build/js/plugins.js", "!build/js/map.js"]
             },
             sass: {
-                src: ["build/css/*.scss"]
+                src: ["build/css/*.scss", "build/sass/"]
             },
             bower: {
                 src: ["bower_components", "bower.json", "README.md"]
@@ -118,7 +116,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                    'build/css/main.css': 'app/css/main.scss'
+                    'build/css/main.css': 'app/sass/gumby.scss'
                 }
             }
         },
@@ -136,7 +134,13 @@ module.exports = function(grunt) {
                     beautify: true
                 }
             }
+        },
+        shell: {
+            comp: {
+                command: 'compass compile'
+            }
         }
+
     });
 
     //EVENTS
@@ -165,6 +169,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-open');
     //HTML build
     grunt.loadNpmTasks('grunt-html-build');
+    //Shell
+    grunt.loadNpmTasks('grunt-shell');
 
     //REGISTER TASKS
 
@@ -182,7 +188,7 @@ module.exports = function(grunt) {
     grunt.registerTask(
         "compass",
         "Compiles sass file to css.",
-        ["sass", "clean:sass"]
+        ["shell:comp", "clean:sass"]
     );
 
     //Build

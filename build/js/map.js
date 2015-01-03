@@ -19,86 +19,88 @@
 
     Map.init = function(){
 
+        console.log("MAP INIT");
+
         var featureOpts = [
-            {
-                stylers: [
-                    { hue: colourLand },
-                    { visibility: 'simplified' },
-                    { gamma: 0.5 },
-                    { weight: 0.5 }
-                ]
-            },
-            {
-                elementType: 'labels',
-                stylers: [
-                    { visibility: 'on' }
-                ]
-            },
-            {
-                featureType: 'water',
-                stylers: [
-                    { color: colourWater }
-                ]
-            },
-            {
-                featureType: 'road.highway',
-                elementType: 'geometry',
-                stylers: [
-                    { hue: colourHighway },
-                    { saturation: 10 },
-                    { lightness: -25 },
-                    { weight: 2 }
-                ]
-            },{
-                featureType: 'road.arterial',
-                elementType: 'all',
-                stylers: [
-                    { hue: colourArterial },
-                    { lightness: -40 },
-                    { visibility: 'simplified' },
-                    { saturation: 30 }
-                ]
-            },{
-                featureType: 'road.local',
-                elementType: 'all',
-                stylers: [
-                    { hue: colourLocal },
-                    { saturation: 10 },
-                    { gamma: 0.7 },
-                    { visibility: 'simplified' }
-                ]
-            },{
-                featureType: 'water',
-                elementType: 'geometry',
-                stylers: [
-                    { saturation: 5 },
-                    { lightness: 10 }
-                ]
-            },{
-                featureType: 'road.highway',
-                elementType: 'labels',
-                stylers: [
-                    { visibility: 'on' },
-                    { saturation: 98 }
-                ]
-            },{
-                featureType: 'administrative.locality',
-                elementType: 'labels',
-                stylers: [
-                    { hue: colourAdmin },
-                    { saturation: 50 },
-                    { lightness: -10 },
-                    { gamma: 0.90 }
-                ]
-            },{
-                featureType: 'transit.line',
-                elementType: 'geometry',
-                stylers: [
-                    { hue: colourTransit },
-                    { visibility: 'on' },
-                    { lightness: -70 }
-                ]
-            }
+//            {
+//                stylers: [
+//                    { hue: colourLand },
+//                    { visibility: 'simplified' },
+//                    { gamma: 0.5 },
+//                    { weight: 0.5 }
+//                ]
+//            },
+//            {
+//                elementType: 'labels',
+//                stylers: [
+//                    { visibility: 'on' }
+//                ]
+//            },
+//            {
+//                featureType: 'water',
+//                stylers: [
+//                    { color: colourWater }
+//                ]
+//            },
+//            {
+//                featureType: 'road.highway',
+//                elementType: 'geometry',
+//                stylers: [
+//                    { hue: colourHighway },
+//                    { saturation: 10 },
+//                    { lightness: -25 },
+//                    { weight: 2 }
+//                ]
+//            },{
+//                featureType: 'road.arterial',
+//                elementType: 'all',
+//                stylers: [
+//                    { hue: colourArterial },
+//                    { lightness: -40 },
+//                    { visibility: 'simplified' },
+//                    { saturation: 30 }
+//                ]
+//            },{
+//                featureType: 'road.local',
+//                elementType: 'all',
+//                stylers: [
+//                    { hue: colourLocal },
+//                    { saturation: 10 },
+//                    { gamma: 0.7 },
+//                    { visibility: 'simplified' }
+//                ]
+//            },{
+//                featureType: 'water',
+//                elementType: 'geometry',
+//                stylers: [
+//                    { saturation: 5 },
+//                    { lightness: 10 }
+//                ]
+//            },{
+//                featureType: 'road.highway',
+//                elementType: 'labels',
+//                stylers: [
+//                    { visibility: 'on' },
+//                    { saturation: 98 }
+//                ]
+//            },{
+//                featureType: 'administrative.locality',
+//                elementType: 'labels',
+//                stylers: [
+//                    { hue: colourAdmin },
+//                    { saturation: 50 },
+//                    { lightness: -10 },
+//                    { gamma: 0.90 }
+//                ]
+//            },{
+//                featureType: 'transit.line',
+//                elementType: 'geometry',
+//                stylers: [
+//                    { hue: colourTransit },
+//                    { visibility: 'on' },
+//                    { lightness: -70 }
+//                ]
+//            }
         ];
 
         var mapOptions = {

@@ -1,6 +1,6 @@
 function init() {
 
-    var albumArr, overlayTimer;
+    var albumArr;
     $.ajax({
         type: "GET",
         url: "https://api.imgur.com/3/album/VFmPC.json",
@@ -13,11 +13,6 @@ function init() {
         }
     });
 
-//    overlayTimer = setInterval(function(){
-//        Overlay.show();
-//        clearInterval(overlayTimer);
-//    }, 3000);
-
     function parseJSON(obj) {
         albumArr = obj.data.images;
         Map.onReady(passDataToMap);
@@ -26,8 +21,5 @@ function init() {
     function passDataToMap() {
         Map.setData(albumArr);
     }
-
-
-
     console.log('main init');
 }
