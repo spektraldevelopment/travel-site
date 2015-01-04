@@ -46,6 +46,22 @@ html, body {
   height: 100%;
 }
 
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.9em;
+}
+
+h3 {
+  font-size: 1.8em;
+}
+
+h4 {
+  font-size: 1.7em;
+}
+
 #mainContent {
   padding: 0;
   height: 100%;
@@ -58,9 +74,34 @@ html, body {
     }
   }
 
-  #entryList {
+  #entryListContainer {
     height: 100%;
-    background-color: #b0c0b5;
+
+      ul {
+        height: 100%;
+        overflow: auto;
+        
+        li {
+          background-color: #cecece;
+          height: 32px;
+          margin-bottom: 10px;
+
+          img {
+            display: inline-block;
+          }
+
+          p {
+            display: inline-block;
+            position: relative;
+            top: -12px;
+            font-size: 0.75em;
+          }
+        }
+
+        li:nth-child(odd) {
+          background-color: #fff;
+        }
+      }
   }
 }
 
